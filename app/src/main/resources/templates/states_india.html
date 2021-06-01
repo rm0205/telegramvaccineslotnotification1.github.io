@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes">
+    <title>Vaccine Slot details</title>
+    <link th:href="@{/css/s.css}" rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link  th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+ 
+    <style>
+   body{
+    background: url([[@{/images/img_lights.jpg}]])
+                no-repeat center center fixed;
+   background-size: 1920px 1080px;
+}
+    h1 {
+  background-color: black;
+  
+  text-shadow: 2px 2px 5px red;
+
+     
+       text-align: center;
+      color: white;
+      text-shadow: 2px 2px 5px red;
+      font-weight: bold;
+      font-size:35px
+    } 
+       h3 {
+       
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 5px red;
+      font-weight: bold;
+      font-size:40px
+      
+    }
+    table {
+  border-collapse: collapse;
+ 
+}
+
+td, th {
+  border: 3px solid #999;
+  padding: 0.5rem;
+  text-align: left;
+    
+}
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+     border-bottom: 1px solid #dddddd;
+    }
+   table td {
+   
+    padding: 12px 15px;
+    
+}
+table tbody tr:nth-of-type(odd) {
+    background-color: #f3f3f3;
+
+}
+table tbody tr:nth-of-type(even) {
+    font-weight:bold
+
+}
+table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+table tbody tr.active-row {
+   
+    color: #009879;
+}
+}
+    
+    </style>
+</head>
+<body>
+ <h1>Welcome</h1>
+ <br>
+ <h3>Vaccine Slot Details</h3>
+ <br />
+ <table border="1" class="w3-table w3-striped w3-bordered">
+  <thead>
+  <tr>
+   <td>Vaccine Center</td>
+   <td>Address</td>
+   <td>Vaccine Centre Timings</td>
+   <td>Vaccine Fees</td>
+   <td>Available Capacity Dose 1 and 2</td>
+   <td>Available Capacity</td>
+   <td>Available Vaccine</td>
+  </tr>
+  </thead>
+  
+  
+ <tr th:each="slot: ${slotList}">
+                    <td th:text="${slot.name}">Vaccine Center</td>
+                    <td th:text="${slot.address + ',' + slot.block_name + ',' + slot.district_name + ',' + slot.pincode + ',' + slot.state_name}">Address</td>
+                     <td th:text="${slot.from + ' '+ 'to' + ' ' + slot.to}">Vaccine Centre Timings</td>
+                     <td th:text="${slot.fee_type}">Vaccine Fees</td>
+                       <td th:text="${'Dose1=' + ' ' + slot.available_capacity_dose1 + ' '+ 'Dose2=' + slot.available_capacity_dose2}">Availabe Dose</td>
+                        <td th:text="${slot.available_capacity}">Vaccine Fees</td>
+                         <td th:text="${slot.vaccine}">Vaccine Name</td>
+                </tr>
+            
+ </table>
+</body>
+</html>

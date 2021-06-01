@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<meta charset="ISO-8859-1"  name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=yes">
+<title>States and District</title>
+<style>
+body{
+    background: url([[@{/images/img_lights.jpg}]])
+                no-repeat center center fixed;
+   background-size: 1920px 1080px;
+}
+select.form-control { 
+    padding: 9px; 
+    border: solid 1px #517B97; 
+    outline: 0; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #CAD9E3), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #CAD9E3 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+     width: 400px;
+    
+    }
+
+  select {
+    text-align: center;
+    text-align-last: center;
+    -moz-text-align-last: center;
+  
+    padding-left: 45%;
+}
+    
+    option {
+  text-align: center;
+  /* reset to left*/
+}
+form
+{
+    text-align:center
+}
+
+.centered {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  
+  font-size: 3px;
+  background-color: cyan;
+  border: darkgreen 5px solid;
+  padding: 5px;
+  z-index: 100;
+}
+.centered1 {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  
+  font-size: 15px;
+  background-color: cyan;
+  border: darkgreen 5px solid;
+  padding: 5px;
+  z-index: 100;
+}
+.centered2 {
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  
+  font-size: 15px;
+  background-color: cyan;
+  border: darkgreen 5px solid;
+  padding: 5px;
+  z-index: 100;
+}
+   
+.button {
+  background-color: #e7e7e7;
+  border: none;
+  border-radius: 8px;
+  color: black;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.control-label {
+    color: white;
+   
+    text-shadow: 2px 2px 5px red;
+    font-size: 25px;
+}
+.wrapper{
+
+color:red;
+position: static;
+
+   top:0;
+   right:0;
+height:500px;
+width:370px
+}
+</style>
+
+</head>
+<body>
+
+
+<br/>
+
+
+<form th:action="@{/stating_data}" th:object="${stateName}"  method="get">
+<label class="control-label">Select your State First Then Submit</label>
+<div class="centered">
+
+   <select class="form-control"  id="state_id" name="state_id">
+            <option value="">Select your State</option>
+            <option th:each="dropDownItem : ${statesList}"
+                     th:value="${dropDownItem.state_id}"
+                     th:text="${dropDownItem.state_name}"
+                     th:selected="${dropDownItem.state_id}">
+            </option>
+        </select>
+     
+        </div>
+        <br/>
+        <br/>
+        <br/>
+         <br/>
+          <br/>
+     <br/>
+     <br/>
+        <button class="button" type="submit">Submit</button>
+ </form>
+ <br/>
+
+ 
+ <form th:action="@{/district_data}"  th:object="${districName}" method="get">
+ 
+ <label class="control-label">Select your District And Date</label>
+   <div class="centered1">
+        <select class="form-control" id="district_id" name="district_id">
+            <option value="">Select your District</option>
+            <option th:each="dropDownItem : ${districtName}"
+                     th:value="${dropDownItem.district_id}"
+                     th:text="${dropDownItem.district_name}"
+                     th:selected="${dropDownItem.district_id}">
+            </option>
+        </select>
+        </div>
+         <br/>
+      <br/>
+     <br/>
+     <br/>
+     <br/>
+     <div class="centered2">
+      <input type="date" th:text="${date}"  id="date" name="date">
+      </div>
+       <br/>
+        <br/>
+         <br/>
+          <br/>
+           <br/>
+            <br/>
+             <br/>
+             
+              
+           
+        <button class="button" type="submit">Submit</button>
+        
+ </form>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+  
+<!-- <div class="form-group">
+     <label class="col-md-3 control-label">State Of India</label>
+         <div class="col-md-5">
+         <div th:if="${statesList != null}">
+             <select>
+                 <option th:each="dropDownItem : ${statesList}"
+                                 th:value="${dropDownItem.state_id}"
+                                 th:text="${dropDownItem.state_name}" />
+                                 
+                
+             </select>
+
+        </div>
+        <div th:if="${statesList == null}">
+            <div>"No Institutions were found, please create some first"</div>
+        </div>
+    </div>
+ </div>  -->
+  
+</body>
+</html>
